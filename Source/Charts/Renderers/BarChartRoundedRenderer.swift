@@ -640,7 +640,7 @@ open class BarChartRoundedRenderer: BarLineScatterCandleBubbleRenderer
                 let roundedPath = bezierPath.cgPath
                 
                 // Set the color for the currently drawn value. If the index is out of bounds, reuse colors.
-                context.setFillColor(dataSet.color(atIndex: j).cgColor)
+                context.setFillColor(set.highlightColor.cgColor)
                 //                CGContextFillRect(context, barRect)
                 context.addPath(roundedPath)
                 context.fillPath()
