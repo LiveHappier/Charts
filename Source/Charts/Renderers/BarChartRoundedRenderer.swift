@@ -35,6 +35,9 @@ open class BarChartRoundedRenderer: BarLineScatterCandleBubbleRenderer
     // [CGRect] per dataset
     fileprivate var _buffers = [Buffer]()
     
+    open var smallCornerRadius: CGFloat = 4
+    open var bigCornerRadius: CGFloat = 6
+    
     open override func initBuffers()
     {
         if let barData = dataProvider?.barData
@@ -312,7 +315,7 @@ open class BarChartRoundedRenderer: BarLineScatterCandleBubbleRenderer
             }
             
             
-            let cornerRadius: CGFloat = barRect.width <= 5 ? 1.0 : 2.0
+            let cornerRadius: CGFloat = barRect.width <= 5 ? smallCornerRadius : bigCornerRadius
             let bezierPath = UIBezierPath(roundedRect: barRect, byRoundingCorners: UIRectCorner.allCorners, cornerRadii: CGSize(width: cornerRadius, height: cornerRadius))
             
             let roundedPath = bezierPath.cgPath
