@@ -633,7 +633,19 @@ open class BarChartRoundedRenderer: BarLineScatterCandleBubbleRenderer
                 
                 setHighlightDrawPos(highlight: high, barRect: barRect)
                 
-                context.fill(barRect)
+                //context.fill(barRect)
+                let cornerRadius: CGFloat = barRect.width <= 5 ? smallCornerRadius : bigCornerRadius
+                let bezierPath = UIBezierPath(roundedRect: barRect, byRoundingCorners: UIRectCorner.allCorners, cornerRadii: CGSize(width: cornerRadius, height: cornerRadius))
+                
+                let roundedPath = bezierPath.cgPath
+                
+                // Set the color for the currently drawn value. If the index is out of bounds, reuse colors.
+                context.setFillColor(dataSet.color(atIndex: j).cgColor)
+                //                CGContextFillRect(context, barRect)
+                context.addPath(roundedPath)
+                context.fillPath()
+                
+                //context.fill(barRect)
             }
         }
         
